@@ -3,11 +3,13 @@ require_relative '../lib/sorthing_algorithms.rb'
 
 class SortingAlgorthimTest < Minitest::Test 
   attr_reader :bubble, 
-              :insertion
+              :insertion,
+              :merge
 
   def setup 
     @bubble    = SortingAlgorithms::BubbleSort.new
     @insertion = SortingAlgorithms::InsertionSort.new
+    @merge     = SortingAlgorithms::MergeSort.new
   end
 
   def test_bubble_returns_array 
@@ -35,6 +37,20 @@ class SortingAlgorthimTest < Minitest::Test
 
   def test_insertion_sort_strings
     expected = ['a','b','c','d','g','i','m']
-    actual = insertion.sort(['d', 'b', 'c', 'a', 'm', 'g', 'i'])
+    actual   = insertion.sort(['d', 'b', 'c', 'a', 'm', 'g', 'i'])
+  end
+
+  def test_merge_sort_ints
+    actual   = merge.sort([9, 20, 33, 15, 4, 7, 16, 2])
+    expected = [2, 4, 7, 9, 15, 16, 20, 33]
+
+    assert_equal actual, expected
+  end
+
+  def test_merge_sort_strings
+    actual   = merge.sort(['z', 'd', 'a', 'f', 'b', 'x', 'm', 'j'])
+    expected = ['a', 'b', 'd', 'f', 'j', 'm', 'x', 'z']
+
+    assert_equal actual, expected
   end
 end
