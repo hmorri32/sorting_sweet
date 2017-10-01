@@ -10,8 +10,19 @@ module SortingAlgorithms
     end
   end
 
-  class InsertionSort 
-
+  class InsertionSort
+    def sort(array)
+      for i in 1...array.length 
+        j = i
+        while j > 0
+          if array[j-1] > array[j]
+            array[j], array[j-1] = array[j-1], array[j]
+          end
+          j = j - 1
+        end
+      end
+      array
+    end
   end
 end
 
@@ -20,4 +31,6 @@ if $PROGRAM_NAME == __FILE__
   numz  = [10, 2, 1, 9, 12, 8]
   SortingAlgorithms::BubbleSort.new.sort(array) # => ["a", "b", "c", "d", "e"]
   SortingAlgorithms::BubbleSort.new.sort(numz) # => [1, 2, 8, 9, 10, 12]
+  SortingAlgorithms::InsertionSort.new.sort(array) # => ["a", "b", "c", "d", "e"]
+  SortingAlgorithms::InsertionSort.new.sort(numz) # => [1, 2, 8, 9, 10, 12]
 end

@@ -2,10 +2,12 @@ require_relative 'helper'
 require_relative '../lib/sorthing_algorithms.rb'
 
 class SortingAlgorthimTest < Minitest::Test 
-  attr_reader :bubble
+  attr_reader :bubble, 
+              :insertion
 
   def setup 
-    @bubble = SortingAlgorithms::BubbleSort.new
+    @bubble    = SortingAlgorithms::BubbleSort.new
+    @insertion = SortingAlgorithms::InsertionSort.new
   end
 
   def test_bubble_returns_array 
@@ -22,5 +24,17 @@ class SortingAlgorthimTest < Minitest::Test
     expected = ['a', 'b', 'd', 'f', 'j', 'm', 'x', 'z']
     actual   = bubble.sort(['z', 'd', 'a', 'f', 'b', 'x', 'm', 'j'])
     assert_equal actual, expected    
+  end
+
+  def test_insertion_sort_ints
+    actual   = insertion.sort([9, 20, 33, 15, 4, 7, 16, 2])
+    expected = [2, 4, 7, 9, 15, 16, 20, 33]
+    
+    assert_equal actual, expected
+  end
+
+  def test_insertion_sort_strings
+    expected = ['a','b','c','d','g','i','m']
+    actual = insertion.sort(['d', 'b', 'c', 'a', 'm', 'g', 'i'])
   end
 end
